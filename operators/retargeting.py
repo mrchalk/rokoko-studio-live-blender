@@ -128,7 +128,7 @@ class RetargetAnimation(bpy.types.Operator):
         # Apply transforms of the target armature
         bpy.ops.object.select_all(action='DESELECT')
         utils.set_active(armature_target)
-        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=False)
 
         bpy.ops.object.mode_set(mode='EDIT')
 
