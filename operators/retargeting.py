@@ -333,8 +333,8 @@ class RetargetAnimation(bpy.types.Operator):
             if target_min is None or target_min > bone_target_z:
                 target_min = bone_target_z
 
-        source_height = source_min_root - source_min
-        target_height = target_min_root - target_min
+        source_height = source_min_root# - source_min
+        target_height = target_min_root# - target_min
 
         if not source_height or not target_height:
             print('No scaling needed')
