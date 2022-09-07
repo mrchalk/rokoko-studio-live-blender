@@ -305,9 +305,9 @@ class RetargetAnimation(bpy.types.Operator):
         bpy.ops.object.mode_set(mode='OBJECT')
 
     def scale_armature(self, context, armature_source, armature_target, root_bones):
-        source_min = None
+        # source_min = None
         source_min_root = None
-        target_min = None
+        # target_min = None
         target_min_root = None
 
         for item in context.scene.rsl_retargeting_bone_list:
@@ -319,19 +319,22 @@ class RetargetAnimation(bpy.types.Operator):
             if not bone_source or not bone_target:
                 continue
 
-            bone_source_z = (armature_source.matrix_world @ bone_source.head)[2]
-            bone_target_z = (armature_target.matrix_world @ bone_target.head)[2]
+            # bone_source_z = (armature_source.matrix_world @ bone_source.head)[2]
+            # bone_target_z = (armature_target.matrix_world @ bone_target.head)[2]
 
             if item.bone_name_target in root_bones:
+                bone_source_z = (armature_source.matrix_world @ bone_source.head)[2]
+                bone_target_z = (armature_target.matrix_world @ bone_target.head)[2]
+                
                 if source_min_root is None or source_min_root > bone_source_z:
                     source_min_root = bone_source_z
                 if target_min_root is None or target_min_root > bone_target_z:
                     target_min_root = bone_target_z
 
-            if source_min is None or source_min > bone_source_z:
-                source_min = bone_source_z
-            if target_min is None or target_min > bone_target_z:
-                target_min = bone_target_z
+            # if source_min is None or source_min > bone_source_z:
+            #     source_min = bone_source_z
+            # if target_min is None or target_min > bone_target_z:
+            #     target_min = bone_target_z
 
         source_height = source_min_root# - source_min
         target_height = target_min_root# - target_min
